@@ -16,18 +16,17 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @Slf4j // les logs
+@RequestMapping("/customer")
 @SecurityRequirement(name = "digitalBankApi")
-@RequestMapping("/customers")
-/*@SecurityRequirement(name = "digitalBankApi")*/
-@CrossOrigin("*")
+@CrossOrigin(value = "*",maxAge = 3600)
 public class CustomerRestController {
     private BankAccountService bankAccountService;
-    @GetMapping("")
+    @GetMapping("/findAll")
     public List<CustomerDTO> customerDTOS(){
         return bankAccountService.listCustomer();
     }
     @GetMapping("/find/{id}")
-    public CustomerDTO getCustomer(@PathVariable(name= "id") Long customerId) throws CustomerNotFoundException {
+    public CustomerDTO getCustomer(@PathVariable("id") Long customerId) throws CustomerNotFoundException {
         return bankAccountService.getCustomer(customerId);
     }
     @GetMapping("/search")
@@ -46,6 +45,7 @@ public class CustomerRestController {
         customerDTO.setId(customerId);
         return bankAccountService.updateCustomer(customerDTO);
     }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public void deleteCustomer(@PathVariable("id") Long customerId){

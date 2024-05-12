@@ -5,6 +5,8 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/ebanking-frontend/digital-banking-web/dist" />
       <excludeFolder url="file://$MODULE_DIR$/ebanking-frontend/digital-banking-web/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/ebanking-frontend/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/ebanking-frontend/tmp" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
