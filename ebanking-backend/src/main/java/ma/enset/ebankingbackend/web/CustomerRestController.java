@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @Slf4j // les logs
+@SecurityRequirement(name = "digitalBankApi")
 @RequestMapping("/customers")
 /*@SecurityRequirement(name = "digitalBankApi")*/
 @CrossOrigin("*")
@@ -34,18 +35,18 @@ public class CustomerRestController {
     {
         return  bankAccountService.searchCustomer(keyword);
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/add")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
         return bankAccountService.saveCustomer(customerDTO);
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update/{id}")
     public CustomerDTO updateCustomer(@PathVariable("id") Long customerId,@RequestBody CustomerDTO customerDTO) throws CustomerNotFoundException{
         customerDTO.setId(customerId);
         return bankAccountService.updateCustomer(customerDTO);
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public void deleteCustomer(@PathVariable("id") Long customerId){
         bankAccountService.deleteCustomer(customerId);

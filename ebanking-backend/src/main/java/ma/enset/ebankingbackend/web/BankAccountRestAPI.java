@@ -19,6 +19,7 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/bankAccounts")
 @CrossOrigin("*")
+@SecurityRequirement(name = "digitalBankApi")
 /*@SecurityRequirement(name = "digitalBankApi")*/
 public class BankAccountRestAPI {
     private BankAccountService bankAccountService;
